@@ -240,7 +240,6 @@ if __name__ == '__main__': #pragma: no cover
     import time
 
     from notebook import Notebook
-    from statement import Statement
     from test_utils import assert_equals
     from worksheet import Worksheet
 

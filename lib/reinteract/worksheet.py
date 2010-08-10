@@ -18,7 +18,6 @@ from change_range import ChangeRange
 from chunks import *
 from notebook import Notebook, NotebookFile
 import reunicode
-from statement import Statement
 from thread_executor import ThreadExecutor
 from undo_stack import UndoStack, InsertOp, DeleteOp
 
@@ -1418,7 +1417,7 @@ a(2)
     #
     # Try writing to a file, and reading it back
     #
-    import tempfile, os
+    import tempfile
 
     clear()
     expect([B(0,1)])

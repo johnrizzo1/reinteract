@@ -391,10 +391,10 @@ class ShellView(gtk.TextView):
 
         return gtk.TextView.do_button_release_event(self, event)
 
-    def do_motion_notify_event(self, event):
-        self.__rewrite_window(event)
-
-        return gtk.TextView.do_motion_notify_event(self, event)
+#    def do_motion_notify_event(self, event):
+#        self.__rewrite_window(event)
+#
+#        return gtk.TextView.do_motion_notify_event(self, event)
 
     def __remove_arg_highlight(self, cursor_to_end=True):
         buf = self.get_buffer()

@@ -415,8 +415,6 @@ class Notebook(gobject.GObject):
         pass
     
 if __name__ == '__main__':
-    import copy
-    import os
     import tempfile
     import zipfile
     

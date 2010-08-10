@@ -822,7 +822,6 @@ class Rewriter:
 
 if __name__ == '__main__':
     import copy
-    import re
 
     def rewrite_and_compile(code, output_func_name=None, future_features=None, print_func_name=None, encoding="utf8"):
         return Rewriter(code, encoding, future_features).rewrite_and_compile(output_func_name, print_func_name)

@@ -602,8 +602,6 @@ class TokenizedStatement(object):
         return "TokenizedStatement" + repr([([(t[0], line[t[1]:t[2]]) for t in tokens], stack) for line, tokens, stack in zip(self.lines, self.tokens, self.stacks)])
             
 if __name__ == '__main__':
-    import sys
-    
     failed = False
     
     def expect(ts, expected):

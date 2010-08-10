@@ -18,7 +18,7 @@ from reinteract.recorded_object import RecordedObject, default_filter
 import reinteract.custom_result as custom_result
 
 class _PlotResultCanvas(FigureCanvasCairo):
-    def draw_event(*args):
+    def draw_event(self, *args):
         # Since we never change anything about the figure, the only time we
         # need to redraw is in response to an expose event, which we handle
         # ourselves

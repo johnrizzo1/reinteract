@@ -10,7 +10,7 @@ import gobject
 
 from about_dialog import AboutDialog
 from application import application
-from reinteract.native_main_menu import NativeMainMenu
+from reinteract.native_main_menu import NativeMainMenu #@UnresolvedImport
 
 class MainMenu(NativeMainMenu):
     """This class is an interface to OS X main menu. (The interface
