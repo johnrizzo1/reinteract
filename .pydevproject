@@ -8,5 +8,6 @@
 <path>/reinteract/src</path>
 <path>/reinteract/lib</path>
 <path>/reinteract/bin</path>
+<path>/reinteract/examples</path>
 </pydev_pathproperty>
 </pydev_project>

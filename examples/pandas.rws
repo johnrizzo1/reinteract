@@ -1,0 +1,30 @@
+from pandas import *
+from numpy import *
+from replot import *
+
+contract = {
+    'start_date': datetools.datetime(2009, 1, 1),
+    'expiration_date': datetools.datetime(2009, 4, 1),
+    'rate_option': 'LIBOR',
+    'rate_duration': '3M',
+    'base_rate': 3,
+    'spread_rate': 4
+    }
+
+facility = {
+    'effective_date': datetools.datetime(2009, 1, 1),
+    'expiration_date': datetools.datetime(2009, 12, 31)
+    }
+
+labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+
+s = Series(
+    random.random_sample(10) * 100, 
+    labels)
+
+plot = plot(s.values())
+plot.set_xlabel("Time")
+plot.set_ylabel("Prices")
+plot.set_xticklabels(labels)
+
+plot

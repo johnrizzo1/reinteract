@@ -164,10 +164,8 @@ class RecordedObject(object):
             setattr(cls, attr, record)
 
 if __name__ == '__main__': #pragma: no cover
-    from test_utils import assert_equals
-
     class TestTarget:
-        def __init__():
+        def __init__(self):
             pass
 
         def exactargs(self, a, b):
