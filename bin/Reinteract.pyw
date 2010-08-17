@@ -8,7 +8,9 @@
 #
 ########################################################################
 
+from reinteract.global_settings import global_settings
 import os
+import reinteract.main
 import sys
 
 script_path = os.path.realpath(os.path.abspath(sys.argv[0]))
@@ -17,17 +19,17 @@ libdir = os.path.join(topdir, 'python')
 externaldir = os.path.join(topdir, 'external')
 builderdir = os.path.join(topdir, 'dialogs')
 examplesdir = os.path.join(topdir, 'examples')
+helpdir = os.path.join(topdir, 'help')
+
 icon_file = os.path.join(topdir, 'Reinteract.ico')
+if not os.path.isfile(icon_file): #Added so that everything works even in development
+    icon_file = os.path.join(topdir + os.path.sep +  "data" + os.path.sep + "Reinteract.ico")
 
 sys.path[0:0] = [libdir, externaldir]
-
-import reinteract
-from reinteract.global_settings import global_settings
 
 global_settings.dialogs_dir = builderdir
 global_settings.examples_dir = examplesdir
 global_settings.icon_file = icon_file
 global_settings.version = "@VERSION@"
 
-import reinteract.main
 reinteract.main.main()
