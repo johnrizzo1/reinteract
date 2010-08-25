@@ -178,8 +178,8 @@ if __name__ == '__main__': #pragma: no cover
         unquoted = _unquote(quoted)
         assert_equals(unquoted, s)
 
-    test_quote(r'',  r'""')
-    test_quote(r'foo',  r'foo')
+    test_quote(r'', r'""')
+    test_quote(r'foo', r'foo')
     test_quote(r'fo"o', r'"fo\"o"')
     test_quote(r'fo o', r'"fo o"')
     test_quote(r'fo\o', r'fo\\o')

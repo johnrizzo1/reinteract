@@ -7,11 +7,10 @@
 #
 ########################################################################
 
+from global_settings import global_settings
 import gtk
 import os
 import sys
-
-from global_settings import global_settings
 
 def _find_program_in_path(progname):
     try:

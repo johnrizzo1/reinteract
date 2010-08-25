@@ -358,11 +358,11 @@ class TokenizedStatement(object):
             if n_a.startswith("__") and not n_b.startswith("__"):
                 return 1
             elif n_b.startswith("__") and not n_a.startswith("__"):
-                return -1
+                return - 1
             elif n_a.startswith("_") and not n_b.startswith("_"):
                 return 1
             elif n_b.startswith("_") and not n_a.startswith("_"):
-                return -1
+                return - 1
             else:
                 return cmp(n_a, n_b)
 
@@ -625,23 +625,23 @@ if __name__ == '__main__':
     expect(ts, [["1"]])
 
     ts = TokenizedStatement()
-    assert ts.set_lines(['"""a','b"""']) == (0, 2)
-    expect(ts, [['"""a',['"""']],['b"""']])
+    assert ts.set_lines(['"""a', 'b"""']) == (0, 2)
+    expect(ts, [['"""a', ['"""']], ['b"""']])
 
     ts = TokenizedStatement()
-    assert ts.set_lines(['(1 + 2','+ 3 + 4)']) == (0, 2)
+    assert ts.set_lines(['(1 + 2', '+ 3 + 4)']) == (0, 2)
     expect(ts, [['(', '1', '+', '2', ['(']], ['+', '3', '+', '4', ')']])
     
-    assert ts.set_lines(['(1 + 2','+ 3 + 4)']) is None
+    assert ts.set_lines(['(1 + 2', '+ 3 + 4)']) is None
     expect(ts, [['(', '1', '+', '2', ['(']], ['+', '3', '+', '4', ')']])
 
-    assert ts.set_lines(['(1 + 2','+ 5 + 6)']) == (1, 2)
+    assert ts.set_lines(['(1 + 2', '+ 5 + 6)']) == (1, 2)
     expect(ts, [['(', '1', '+', '2', ['(']], ['+', '5', '+', '6', ')']])
 
-    assert ts.set_lines(['(3 + 4','+ 5 + 6)']) == (0, 1)
+    assert ts.set_lines(['(3 + 4', '+ 5 + 6)']) == (0, 1)
     expect(ts, [['(', '3', '+', '4', ['(']], ['+', '5', '+', '6', ')']])
 
-    assert ts.set_lines(['((1 + 2','+ 5 + 6)']) == (0, 2)
+    assert ts.set_lines(['((1 + 2', '+ 5 + 6)']) == (0, 2)
     expect(ts, [['(', '(', '1', '+', '2', ['(', '(']], ['+', '5', '+', '6', ')', ['(']]])
 
     assert ts.set_lines(['((1 + 2', '+ 3 + 4)', '+ 5 + 6)']) == (1, 3)
@@ -652,7 +652,7 @@ if __name__ == '__main__':
     ### Tests of iterator functionality
     
     ts = TokenizedStatement()
-    ts.set_lines(['(1 + ','2)'])
+    ts.set_lines(['(1 + ', '2)'])
     assert ts._get_iter(0, 2) is None
     assert ts._get_iter(1, 2) is None
 
@@ -725,19 +725,19 @@ if __name__ == '__main__':
 
     ts = TokenizedStatement()
 
-    lines = ([('if (True):',                     4),
-              ('    pass',                       4),
-              ('if (True): # a true statement',  4),
-              ('    pass',                       4),
-              ('if (a >',                        4),
-              ('    1 +',                        4),
-              ('    5):',                        4),
-              ('    pass',                       4),
-              ('"""A string',                    4),
-              ('    more string',                4),
-              ('    string finish"""',           0),
-              ('a = \\',                         4),
-              ('    1',                          0),
+    lines = ([('if (True):', 4),
+              ('    pass', 4),
+              ('if (True): # a true statement', 4),
+              ('    pass', 4),
+              ('if (a >', 4),
+              ('    1 +', 4),
+              ('    5):', 4),
+              ('    pass', 4),
+              ('"""A string', 4),
+              ('    more string', 4),
+              ('    string finish"""', 0),
+              ('a = \\', 4),
+              ('    1', 0),
               ])
 
     ts.set_lines([text for text, _ in lines])
@@ -764,7 +764,7 @@ if __name__ == '__main__':
         'obj': MyObject()
     }
             
-    def test_completion(line, expected, index = -1, min_length=0):
+    def test_completion(line, expected, index= -1, min_length=0):
         if index == -1:
             index = len(line)
         
@@ -772,7 +772,7 @@ if __name__ == '__main__':
         ts.set_lines([line])
         completions = [n for n, _, _ in ts.find_completions(0, index, scope, min_length=min_length)]
         if completions != expected:
-            print "For %s/%d, got %s, expected %s" % (line,index,completions,expected)
+            print "For %s/%d, got %s, expected %s" % (line, index, completions, expected)
             failed = True
 
     def test_multiline_completion(lines, line, index, expected):
@@ -780,7 +780,7 @@ if __name__ == '__main__':
         ts.set_lines(lines)
         completions = [n for n, _, _ in ts.find_completions(line, index, scope)]
         if completions != expected:
-            print "For %s/%d/%d, got %s, expected %s" % (lines,line,index,completions,expected)
+            print "For %s/%d/%d, got %s, expected %s" % (lines, line, index, completions, expected)
             failed = True
 
     test_completion("a", ['a', 'abcd'])
@@ -813,7 +813,7 @@ if __name__ == '__main__':
         ts.set_lines([line])
         obj, _, _, _, _ = ts.get_object_at_location(0, index, scope, include_adjacent=include_adjacent)
         if obj != expected:
-            print "For %s/%d, got %s, expected %s" % (line,index,obj,expected)
+            print "For %s/%d, got %s, expected %s" % (line, index, obj, expected)
             failed = True
 
     test_object_at_location("a", 0, 1)

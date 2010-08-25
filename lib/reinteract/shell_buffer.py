@@ -14,7 +14,7 @@ import logging
 import pango
 
 from custom_result import CustomResult
-from chunks import StatementChunk,CommentChunk
+from chunks import StatementChunk, CommentChunk
 import doc_format
 from notebook import HelpResult
 import reunicode

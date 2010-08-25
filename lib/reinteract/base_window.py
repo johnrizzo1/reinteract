@@ -6,21 +6,19 @@
 #
 ########################################################################
 
-import os
-import re
-import sys
-
-import gtk
-
 from application import application
 from file_list import FileList
 from format_escaped import format_escaped
 from global_settings import global_settings
 from library_editor import LibraryEditor
 from notebook import Notebook, NotebookFile
-from worksheet_editor import WorksheetEditor
 from preferences_dialog import show_preferences
+from worksheet_editor import WorksheetEditor
+import gtk
+import os
+import re
 import reunicode
+import sys
 
 if global_settings.main_menu_mode:
     from main_menu import main_menu
@@ -73,31 +71,31 @@ class BaseWindow:
 
     def _add_actions(self, action_group):
         action_group.add_actions([
-            ('file',    None,                "_File"),
-            ('edit',    None,                "_Edit"),
-            ('help',   	None,                "_Help"),
+            ('file', None, "_File"),
+            ('edit', None, "_Edit"),
+            ('help', 	None, "_Help"),
 
-            ('new-notebook',        gtk.STOCK_NEW,        "New Note_book...",     "<control><shift>n", None, self.on_new_notebook),
-            ('open-notebook',       gtk.STOCK_OPEN,       "_Open Notebook...",    "<control><shift>o", None, self.on_open_notebook),
+            ('new-notebook', gtk.STOCK_NEW, "New Note_book...", "<control><shift>n", None, self.on_new_notebook),
+            ('open-notebook', gtk.STOCK_OPEN, "_Open Notebook...", "<control><shift>o", None, self.on_open_notebook),
 
-            ('open',          gtk.STOCK_OPEN,  None,             None,         None, self.on_open),
-            ('save',          gtk.STOCK_SAVE,  None,             None,         None, self.on_save),
-            ('rename',        None,            "_Rename...",     None,         None, self.on_rename),
-            ('close',         gtk.STOCK_CLOSE, None,             "<control>w", None, self.on_close),
+            ('open', gtk.STOCK_OPEN, None, None, None, self.on_open),
+            ('save', gtk.STOCK_SAVE, None, None, None, self.on_save),
+            ('rename', None, "_Rename...", None, None, self.on_rename),
+            ('close', gtk.STOCK_CLOSE, None, "<control>w", None, self.on_close),
 
-            ('quit',          gtk.STOCK_QUIT, None,                None,         None, self.on_quit),
+            ('quit', gtk.STOCK_QUIT, None, None, None, self.on_quit),
 
-            ('cut',     gtk.STOCK_CUT,       None,         None,              None, self.on_cut),
-            ('copy',    gtk.STOCK_COPY,      None,         None,              None, self.on_copy),
+            ('cut', gtk.STOCK_CUT, None, None, None, self.on_cut),
+            ('copy', gtk.STOCK_COPY, None, None, None, self.on_copy),
 
             ('copy-as-doctests', gtk.STOCK_COPY, "Copy as Doc_tests", "<control><shift>c", None, self.on_copy_as_doctests),
 
-            ('paste',   gtk.STOCK_PASTE,     None,         None,              None,  self.on_paste),
-            ('delete',  gtk.STOCK_DELETE,    None,         None,              None,  self.on_delete),
-            ('about',   gtk.STOCK_ABOUT,     None,         None,              None, self.on_about),
-            ('calculate', gtk.STOCK_REFRESH, "Ca_lculate", '<control>Return', None,  self.on_calculate),
-            ('break',   gtk.STOCK_CANCEL,    "_Break",     '<control>Break',  None,  self.on_break),
-            ('preferences', gtk.STOCK_PREFERENCES, "Prefere_nces",     None,  None,  self.on_preferences),
+            ('paste', gtk.STOCK_PASTE, None, None, None, self.on_paste),
+            ('delete', gtk.STOCK_DELETE, None, None, None, self.on_delete),
+            ('about', gtk.STOCK_ABOUT, None, None, None, self.on_about),
+            ('calculate', gtk.STOCK_REFRESH, "Ca_lculate", '<control>Return', None, self.on_calculate),
+            ('break', gtk.STOCK_CANCEL, "_Break", '<control>Break', None, self.on_break),
+            ('preferences', gtk.STOCK_PREFERENCES, "Prefere_nces", None, None, self.on_preferences),
         ])
 
     def _close_current(self):
@@ -160,7 +158,7 @@ class BaseWindow:
             dialog = gtk.MessageDialog(buttons=gtk.BUTTONS_OK,
                                        type=gtk.MESSAGE_ERROR)
             dialog.set_markup(format_escaped("<big><b>Cannot open '%s'</b></big>", os.path.basename(filename)))
-            dialog.format_secondary_text("Error opening '%s': %s" %(filename, e.strerror))
+            dialog.format_secondary_text("Error opening '%s': %s" % (filename, e.strerror))
             dialog.run()
             dialog.destroy()
             return None
@@ -180,7 +178,7 @@ class BaseWindow:
     def on_open(self, action):
         chooser = gtk.FileChooserDialog("Open File...", self.window, gtk.FILE_CHOOSER_ACTION_OPEN,
                                         (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                                         gtk.STOCK_OPEN,   gtk.RESPONSE_OK))
+                                         gtk.STOCK_OPEN, gtk.RESPONSE_OK))
         chooser.set_default_response(gtk.RESPONSE_OK)
         response = chooser.run()
         filename = None

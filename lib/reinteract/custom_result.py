@@ -30,7 +30,7 @@ def show_menu(widget, event, save_callback=None):
     def on_activate(menu):
         chooser = gtk.FileChooserDialog("Save As...", toplevel, gtk.FILE_CHOOSER_ACTION_SAVE,
                                         (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                                         gtk.STOCK_SAVE,   gtk.RESPONSE_OK))
+                                         gtk.STOCK_SAVE, gtk.RESPONSE_OK))
         chooser.set_default_response(gtk.RESPONSE_OK)
         response = chooser.run()
         filename = None

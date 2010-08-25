@@ -105,7 +105,7 @@ class Worksheet(gobject.GObject):
         exec _DEFINE_GLOBALS in self.global_scope
 
         self.__lines = [""]
-        self.__chunks = [BlankChunk(0,1)]
+        self.__chunks = [BlankChunk(0, 1)]
 
         # There's quite a bit of complexity knowing when a change to lines changes
         # adjacent chunks. We use a simple and slightly inefficient algorithm for this
@@ -160,7 +160,7 @@ class Worksheet(gobject.GObject):
         for chunk in deleted_chunks:
             self.emit('chunk-deleted', chunk)
 
-        for chunk in sorted(changed_chunks, lambda a, b: cmp(a.start,b.start)):
+        for chunk in sorted(changed_chunks, lambda a, b: cmp(a.start, b.start)):
             if chunk.newly_inserted:
                 chunk.newly_inserted = False
                 chunk.changes.clear()
@@ -732,11 +732,11 @@ class Worksheet(gobject.GObject):
         # XXX: This prevents redoing New, would that "just work"?
         self.__undo_stack.clear()
 
-    def get_text(self, start_line=0, start_offset=0, end_line=-1, end_offset=-1):
+    def get_text(self, start_line=0, start_offset=0, end_line= -1, end_offset= -1):
         if start_line < 0:
-            start_line = len(self.__lines) -1
+            start_line = len(self.__lines) - 1
         if end_line < 0:
-            end_line = len(self.__lines) -1
+            end_line = len(self.__lines) - 1
         if start_offset < 0:
             start_offset = len(self.__lines[start_line])
         if end_offset < 0:
@@ -970,7 +970,7 @@ if __name__ == '__main__': #pragma: no cover
         if not compare(chunks, expected):
             raise AssertionError("\nGot:\n   %s\nExpected:\n   %s" % (chunks, expected))
 
-    def expect_text(expected, start_line=0, start_offset=0, end_line=-1, end_offset=-1):
+    def expect_text(expected, start_line=0, start_offset=0, end_line= -1, end_offset= -1):
         text = worksheet.get_text(start_line, start_offset, end_line, end_offset)
         if (text != expected):
             raise AssertionError("\nGot:\n   '%s'\nExpected:\n   '%s'" % (text, expected))
@@ -981,7 +981,7 @@ if __name__ == '__main__': #pragma: no cover
             raise AssertionError("\nGot:\n   '%s'\nExpected:\n   '%s'" % (text, expected))
 
     def expect_results(expected):
-        results = [ (x.results if isinstance(x,StatementChunk) else None) for x in worksheet.iterate_chunks() ]
+        results = [ (x.results if isinstance(x, StatementChunk) else None) for x in worksheet.iterate_chunks() ]
         if (results != expected):
             raise AssertionError("\nGot:\n   '%s'\nExpected:\n   '%s'" % (results, expected))
 
@@ -1110,36 +1110,36 @@ if __name__ == '__main__': #pragma: no cover
     # Insertions
     insert(0, 0, "11\n22\n33")
     expect_text("11\n22\n33")
-    expect([S(0,1), S(1,2), S(2,3)])
+    expect([S(0, 1), S(1, 2), S(2, 3)])
     insert(0, 1, "a")
     expect_text("1a1\n22\n33")
-    expect([S(0,1), S(1,2), S(2,3)])
+    expect([S(0, 1), S(1, 2), S(2, 3)])
     insert(1, 1, "a\na")
     expect_text("1a1\n2a\na2\n33")
-    expect([S(0,1), S(1,2), S(2,3), S(3,4)])
+    expect([S(0, 1), S(1, 2), S(2, 3), S(3, 4)])
     insert(1, 0, "bb\n")
     expect_text("1a1\nbb\n2a\na2\n33")
-    expect([S(0,1), S(1,2), S(2,3), S(3,4), S(4, 5)])
+    expect([S(0, 1), S(1, 2), S(2, 3), S(3, 4), S(4, 5)])
     insert(4, 3, "\n")
     expect_text("1a1\nbb\n2a\na2\n33\n")
-    expect([S(0,1), S(1,2), S(2,3), S(3,4), S(4, 5), B(5, 6)])
+    expect([S(0, 1), S(1, 2), S(2, 3), S(3, 4), S(4, 5), B(5, 6)])
 
     # Deletions
     delete(4, 3, 5, 0)
     expect_text("1a1\nbb\n2a\na2\n33")
-    expect([S(0,1), S(1,2), S(2,3), S(3,4), S(4, 5)])
+    expect([S(0, 1), S(1, 2), S(2, 3), S(3, 4), S(4, 5)])
     delete(0, 1, 0, 2)
     expect_text("11\nbb\n2a\na2\n33")
-    expect([S(0,1), S(1,2), S(2,3), S(3,4), S(4, 5)])
+    expect([S(0, 1), S(1, 2), S(2, 3), S(3, 4), S(4, 5)])
     delete(0, 0, 1, 0)
     expect_text("bb\n2a\na2\n33")
-    expect([S(0,1), S(1,2), S(2,3), S(3,4)])
+    expect([S(0, 1), S(1, 2), S(2, 3), S(3, 4)])
     delete(1, 1, 2, 1)
     expect_text("bb\n22\n33")
-    expect([S(0,1), S(1,2), S(2,3)])
+    expect([S(0, 1), S(1, 2), S(2, 3)])
     delete(2, 1, 1, 0)
     expect_text("bb\n3")
-    expect([S(0,1), S(1,2)])
+    expect([S(0, 1), S(1, 2)])
 
     # Test deleting part of a BlankChunk
     clear()
@@ -1155,35 +1155,35 @@ if __name__ == '__main__': #pragma: no cover
     insert(0, 0, "0\n")
     worksheet.end_user_action()
     expect_text("0\n1\n#2")
-    expect([S(0,1), S(1,2), C(2,3)])
+    expect([S(0, 1), S(1, 2), C(2, 3)])
     worksheet.begin_user_action()
     delete(2, 0, 2, 1)
     delete(0, 0, 1, 0)
     worksheet.end_user_action()
-    expect([S(0,1), S(1,2)])
+    expect([S(0, 1), S(1, 2)])
 
     # Basic tokenization of valid python
     clear()
     insert(0, 0, "1\n\n#2\ndef a():\n  3")
-    expect([S(0,1), B(1,2), C(2,3), S(3,5)])
+    expect([S(0, 1), B(1, 2), C(2, 3), S(3, 5)])
 
     clear()
-    expect([B(0,1)])
+    expect([B(0, 1)])
 
     # Multiple consecutive blank lines
     clear()
     insert(0, 0, "1")
     insert(0, 1, "\n")
-    expect([S(0,1),B(1,2)])
+    expect([S(0, 1), B(1, 2)])
     insert(1, 0, "\n")
-    expect([S(0,1),B(1,3)])
+    expect([S(0, 1), B(1, 3)])
 
     # Continuation lines at the beginning
     clear()
     insert(0, 0, "# Something\n   pass")
-    expect([C(0,1), S(1,2)])
+    expect([C(0, 1), S(1, 2)])
     delete(0, 0, 1, 0)
-    expect([S(0,1)])
+    expect([S(0, 1)])
 
     # Calculation
     clear()
@@ -1211,36 +1211,36 @@ if __name__ == '__main__': #pragma: no cover
     clear()
     clear_log()
     insert(0, 0, "1 + 1")
-    expect_log([CD(), CI(0,1)])
+    expect_log([CD(), CI(0, 1)])
     calculate()
-    expect_log([CSC(0,1), CRC(0,1)])
+    expect_log([CSC(0, 1), CRC(0, 1)])
 
     insert(0, 0, "#")
-    expect_log([CD(), CI(0,1)])
+    expect_log([CD(), CI(0, 1)])
 
     # Deleting a chunk with results
     clear()
     insert(0, 0, "1\n2")
     calculate()
-    expect([S(0,1),S(1,2)])
-    expect_results([['1'],['2']])
+    expect([S(0, 1), S(1, 2)])
+    expect_results([['1'], ['2']])
     clear_log()
     delete(0, 0, 0, 1)
-    expect([B(0,1),S(1,2)])
-    expect_log([CD(), CI(0,1), CSC(1,2)])
+    expect([B(0, 1), S(1, 2)])
+    expect_log([CD(), CI(0, 1), CSC(1, 2)])
 
     # Turning a statement into a continuation line
     clear()
     insert(0, 0, "1 \\\n+ 2\n")
     clear_log()
     insert(1, 0, " ")
-    expect([S(0,2), B(2,3)])
-    expect_log([CD(), CC(0,2,[1])])
+    expect([S(0, 2), B(2, 3)])
+    expect_log([CD(), CC(0, 2, [1])])
 
     # And back
     delete(1, 0, 1, 1)
-    expect([S(0,1), S(1,2), B(2,3)])
-    expect_log([CC(0,1,[]),CI(1,2)])
+    expect([S(0, 1), S(1, 2), B(2, 3)])
+    expect_log([CC(0, 1, []), CI(1, 2)])
 
     # Shortening the last chunk in the buffer
     clear()
@@ -1252,22 +1252,22 @@ if __name__ == '__main__': #pragma: no cover
     clear()
     insert(0, 0, "#def a(x):\n    return x")
     delete(0, 0, 0, 1)
-    expect([S(0,2)])
+    expect([S(0, 2)])
 
     # Deleting an entire continuation line
     clear()
 
     insert(0, 0, "for i in (1,2):\n    print i\n    print i + 1\n")
-    expect([S(0,3), B(3,4)])
+    expect([S(0, 3), B(3, 4)])
     delete(1, 0, 2, 0)
-    expect([S(0,2), B(2,3)])
+    expect([S(0, 2), B(2, 3)])
 
     # Editing a continuation line, while leaving it a continuation
     clear()
 
     insert(0, 0, "1\\\n  + 2\\\n  + 3")
     delete(1, 0, 1, 1)
-    expect([S(0,3)])
+    expect([S(0, 3)])
 
     # Test that changes that substitute text with identical
     # text counts as changes
@@ -1280,16 +1280,16 @@ if __name__ == '__main__': #pragma: no cover
     delete(0, 1, 0, 2)
     insert(0, 1, "f")
     worksheet.end_user_action()
-    expect([S(0,1)])
-    expect_log([CC(0,1,[0])])
+    expect([S(0, 1)])
+    expect_log([CC(0, 1, [0])])
 
     # Text from elsewhere in the buffer
     clear()
     insert(0, 0, "if\nif")
     clear_log()
     delete(0, 1, 1, 1)
-    expect([S(0,1)])
-    expect_log([CD(), CC(0,1,[0])])
+    expect([S(0, 1)])
+    expect_log([CD(), CC(0, 1, [0])])
 
     # Test that commenting out a line marks subsequent lines for recalculation
     clear()
@@ -1311,7 +1311,7 @@ if __name__ == '__main__': #pragma: no cover
     worksheet.rescan()
     insert(1, 0, "    ")
     worksheet.end_user_action()
-    expect_log([CC(0,2,[0,1])])
+    expect_log([CC(0, 2, [0, 1])])
 
     #
     # Undo tests
@@ -1420,7 +1420,7 @@ a(2)
     import tempfile
 
     clear()
-    expect([B(0,1)])
+    expect([B(0, 1)])
 
     SAVE_TEST = """a = 1
 a
@@ -1447,10 +1447,10 @@ b = 2"""
         calculate()
 
         expect_text(SAVE_TEST)
-        expect([S(0,1), S(1,2), C(2,3), B(3,4), S(4,5)])
+        expect([S(0, 1), S(1, 2), C(2, 3), B(3, 4), S(4, 5)])
         expect_results([[], ['1'], None, None, []])
     finally:
         os.remove(fname)
 
     clear()
-    expect([B(0,1)])
+    expect([B(0, 1)])

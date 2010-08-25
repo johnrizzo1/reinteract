@@ -16,7 +16,7 @@ from global_settings import global_settings
 from notebook import NotebookFile
 
 class MiniWindow(BaseNotebookWindow):
-    UI_STRING="""
+    UI_STRING = """
 <ui>
    <menubar name="TopMenu">
       <menu action="notebook">
@@ -83,8 +83,8 @@ class MiniWindow(BaseNotebookWindow):
         BaseNotebookWindow._add_actions(self, action_group)
 
         action_group.add_actions([
-            ('notebook',    None,                "_Notebook"),
-            ('pages',       None,                "_Pages")
+            ('notebook', None, "_Notebook"),
+            ('pages', None, "_Pages")
         ])
 
 

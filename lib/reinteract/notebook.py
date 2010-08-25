@@ -24,7 +24,7 @@ _counter = 1
 # rather than replacing __builtins__ to avoid triggering restricted mode.
 import __builtin__
 saved_import = __builtin__.__import__
-def reinteract_import(name, globals=None, locals=None, fromlist=None, level=-1):
+def reinteract_import(name, globals=None, locals=None, fromlist=None, level= -1):
     if globals and '__reinteract_notebook' in globals:
         return globals['__reinteract_notebook'].do_import(name, globals, locals, fromlist, level)
     else:
@@ -277,7 +277,7 @@ class Notebook(gobject.GObject):
             module = self.__load_local_module(fullname, loader)
             self.__modules[name] = module
         else:
-            module =  loader.load_module(fullname)
+            module = loader.load_module(fullname)
 
         if parent is not None:
             parent.__dict__[name] = module
@@ -327,7 +327,7 @@ class Notebook(gobject.GObject):
         try:
             names = name.split('.')
 
-            module, local =  self.__import_recurse(names)
+            module, local = self.__import_recurse(names)
 
             if fromlist is not None:
                 # In 'from a.b import c', if a.b.c doesn't exist after loading a.b, The built-in

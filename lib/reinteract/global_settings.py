@@ -56,7 +56,7 @@ class GlobalSettings(gobject.GObject):
         if sys.platform == 'win32':
             self.config_dir = os.path.join(os.getenv('APPDATA'), 'Reinteract')
         else:
-            self.config_dir =  os.path.expanduser("~/.reinteract")
+            self.config_dir = os.path.expanduser("~/.reinteract")
 
         # In a shocking example of cross-platform convergence, ~/Documents
         # is the documents directory on OS X, Windows, and Linux

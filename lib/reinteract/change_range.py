@@ -18,7 +18,7 @@ class ChangeRange(object):
     could be used to track any other list of items.)
     """
 
-    def __init__(self, start=-1, end=-1):
+    def __init__(self, start= -1, end= -1):
         self.start = start
         self.end = end
         self.delta = end - start
@@ -99,22 +99,22 @@ if __name__ == '__main__': #pragma: no cover
 
     # insert_lines()
     changes.clear()
-    changes.insert(1,1)
+    changes.insert(1, 1)
     expect(1, 2, 1)
 
     changes.clear()
-    changes.change(3,5)
-    changes.insert(0,1)
+    changes.change(3, 5)
+    changes.insert(0, 1)
     expect(0, 6, 1)
 
     changes.clear()
-    changes.change(3,5)
-    changes.insert(4,1)
+    changes.change(3, 5)
+    changes.insert(4, 1)
     expect(3, 6, 1)
 
     changes.clear()
-    changes.change(3,4)
-    changes.insert(5,1)
+    changes.change(3, 4)
+    changes.insert(5, 1)
     expect(3, 6, 1)
 
     # delete_range()

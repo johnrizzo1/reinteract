@@ -6,18 +6,16 @@
 #
 ########################################################################
 
-import os
-import re
-import sys
-
-import gtk
-
 from application import application
 from base_window import BaseWindow
 from library_editor import LibraryEditor
 from notebook import LibraryFile, NotebookFile, WorksheetFile
 from window_builder import WindowBuilder
 from worksheet_editor import WorksheetEditor
+import gtk
+import os
+import re
+import sys
 
 class BaseNotebookWindow(BaseWindow):
     def __init__(self, notebook):
@@ -125,10 +123,10 @@ class BaseNotebookWindow(BaseWindow):
         BaseWindow._add_actions(self, action_group)
 
         action_group.add_actions([
-            ('notebook-properties', gtk.STOCK_PROPERTIES, "Notebook _Properties", None,         None, self.on_notebook_properties),
-            ('new-worksheet',       gtk.STOCK_NEW,        "_New Worksheet",       "<control>n", None, self.on_new_worksheet),
-            ('new-library',         gtk.STOCK_NEW,        "New _Library",         "",           None, self.on_new_library),
-            ('calculate-all',       gtk.STOCK_REFRESH,    "Calculate _All",       "<control><shift>Return",  None, self.on_calculate_all),
+            ('notebook-properties', gtk.STOCK_PROPERTIES, "Notebook _Properties", None, None, self.on_notebook_properties),
+            ('new-worksheet', gtk.STOCK_NEW, "_New Worksheet", "<control>n", None, self.on_new_worksheet),
+            ('new-library', gtk.STOCK_NEW, "New _Library", "", None, self.on_new_library),
+            ('calculate-all', gtk.STOCK_REFRESH, "Calculate _All", "<control><shift>Return", None, self.on_calculate_all),
         ])
 
     def _close_current(self):

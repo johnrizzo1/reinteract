@@ -39,9 +39,9 @@ class LibraryEditor(Editor):
 
         self.widget.show_all()
 
-        self.buf.worksheet.connect('notify::filename', lambda *args: self._update_filename())
-        self.buf.worksheet.connect('notify::file', lambda *args: self._update_file())
-        self.buf.worksheet.connect('notify::code-modified', lambda *args: self._update_modified())
+        self.buf.worksheet.connect('notify::filename', lambda * args: self._update_filename())
+        self.buf.worksheet.connect('notify::file', lambda * args: self._update_file())
+        self.buf.worksheet.connect('notify::code-modified', lambda * args: self._update_modified())
 
     #######################################################
     # Callbacks

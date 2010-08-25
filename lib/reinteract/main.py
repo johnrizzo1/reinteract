@@ -24,7 +24,7 @@ from application import application
 def main():
     if sys.version_info < (2, 5, 0):
         message = "Reinteract requires Python 2.5 or newer"
-        print >>sys.stderr, message
+        print >> sys.stderr, message
         try:
             dialog = gtk.MessageDialog(buttons=gtk.BUTTONS_OK,
                                        type=gtk.MESSAGE_ERROR,
@@ -65,7 +65,7 @@ def main():
                 sys.exit(1)
         else: # mini-mode, can specify one notebook
             if len(args) > 1:
-                print >>sys.stderr, "Ignoring extra command line arguments."
+                print >> sys.stderr, "Ignoring extra command line arguments."
 
             absolute = os.path.abspath(args[0])
 

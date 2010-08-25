@@ -67,7 +67,7 @@ class CompletionPopup(Popup):
         # the window background to white
         self.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color(65535, 65535, 65535))
 
-        self.__doc_popup= DocPopup(fixed_width=True, fixed_height=True, max_height=HEIGHT, can_focus=False)
+        self.__doc_popup = DocPopup(fixed_width=True, fixed_height=True, max_height=HEIGHT, can_focus=False)
 
         self._in_change = False
         self.spontaneous = False

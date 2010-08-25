@@ -120,10 +120,10 @@ class ShellView(gtk.TextView):
         self.__watch_window = gtk.gdk.Window(self.window,
                                              self.allocation.width, self.allocation.height,
                                              gtk.gdk.WINDOW_CHILD,
-                                             (gtk.gdk.SCROLL_MASK |
-                                              gtk.gdk.BUTTON_PRESS_MASK |
-                                              gtk.gdk.BUTTON_RELEASE_MASK |
-                                              gtk.gdk.POINTER_MOTION_MASK |
+                                             (gtk.gdk.SCROLL_MASK | 
+                                              gtk.gdk.BUTTON_PRESS_MASK | 
+                                              gtk.gdk.BUTTON_RELEASE_MASK | 
+                                              gtk.gdk.POINTER_MOTION_MASK | 
                                               gtk.gdk.POINTER_MOTION_HINT_MASK),
                                              gtk.gdk.INPUT_ONLY,
                                              x=0, y=0)
@@ -555,7 +555,7 @@ class ShellView(gtk.TextView):
             iter, _ = self.get_iter_at_position(x, y)
             line, offset = buf.iter_to_pos(iter, adjust=ADJUST_NONE)
             if line is not None:
-                obj, start_line, start_offset, _,_ = buf.worksheet.get_object_at_location(line, offset)
+                obj, start_line, start_offset, _, _ = buf.worksheet.get_object_at_location(line, offset)
             else:
                 obj = None
 

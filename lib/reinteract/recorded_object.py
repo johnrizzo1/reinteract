@@ -81,10 +81,10 @@ class RecordedObject(object):
 
     def _check_call(self, name, args, kwargs, spec):
         # This tries to duplicate some of python's argument checking logic
-        num_args      = len(spec[0]) if spec[0] else 0
-        use_varargs   = True if spec[1] else False
+        num_args = len(spec[0]) if spec[0] else 0
+        use_varargs = True if spec[1] else False
         use_varkwargs = True if spec[2] else False
-        num_defaults  = len(spec[3]) if spec[3] else 0
+        num_defaults = len(spec[3]) if spec[3] else 0
 
         given_args = len(args) + 1 # self not included
         min_args = num_args - num_defaults

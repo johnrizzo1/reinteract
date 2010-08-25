@@ -8,34 +8,34 @@
 
 import re
 
-TOKEN_KEYWORD      = 1
-TOKEN_NAME         = 2
-TOKEN_PUNCTUATION  = 3
-TOKEN_COMMENT      = 4
-TOKEN_STRING       = 5
+TOKEN_KEYWORD = 1
+TOKEN_NAME = 2
+TOKEN_PUNCTUATION = 3
+TOKEN_COMMENT = 4
+TOKEN_STRING = 5
 TOKEN_CONTINUATION = 6
-TOKEN_NUMBER       = 7
-TOKEN_JUNK         = 8
-TOKEN_LPAREN       = 9
-TOKEN_RPAREN       = 10
-TOKEN_LSQB         = 11
-TOKEN_RSQB         = 11
-TOKEN_LBRACE       = 12
-TOKEN_RBRACE       = 13
-TOKEN_BACKQUOTE    = 14
-TOKEN_COLON        = 15
-TOKEN_DOT          = 16
-TOKEN_EQUAL        = 17
-TOKEN_AUGEQUAL     = 18
+TOKEN_NUMBER = 7
+TOKEN_JUNK = 8
+TOKEN_LPAREN = 9
+TOKEN_RPAREN = 10
+TOKEN_LSQB = 11
+TOKEN_RSQB = 11
+TOKEN_LBRACE = 12
+TOKEN_RBRACE = 13
+TOKEN_BACKQUOTE = 14
+TOKEN_COLON = 15
+TOKEN_DOT = 16
+TOKEN_EQUAL = 17
+TOKEN_AUGEQUAL = 18
 TOKEN_BUILTIN_CONSTANT = 19
 
 FLAG_OPEN = 1
 FLAG_CLOSE = 2
 
 _KEYWORDS = set([ 'and', 'as', 'assert', 'break', 'class', 'continue', 'def',
-                  'del', 'elif', 'else', 'except', 'exec', 'finally',  'for',
+                  'del', 'elif', 'else', 'except', 'exec', 'finally', 'for',
                   'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'not',
-                  'or', 'pass', 'print', 'raise',  'return', 'try', 'while',
+                  'or', 'pass', 'print', 'raise', 'return', 'try', 'while',
                   'with', 'yield' ])
 
 _IDENTIFIER_TOKENS = {
@@ -225,8 +225,8 @@ def tokenize_line(str, stack=None):
                     delim = '"'
                 if len(core) == len(delim) or \
                    not core.endswith(delim) or \
-                   (core[len(core)-len(delim)-1] == '\\' and
-                    core[len(core)-len(delim)-2] != '\\'):
+                   (core[len(core) - len(delim) - 1] == '\\' and
+                    core[len(core) - len(delim) - 2] != '\\'):
                     flags |= FLAG_OPEN
                     stack.append(delim)
 

@@ -164,7 +164,7 @@ def run(parent=None):
         elif response == 1: # Browse...
             chooser = gtk.FileChooserDialog("Open Notebook...", parent, gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
                                             (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                                             gtk.STOCK_OPEN,   gtk.RESPONSE_OK))
+                                             gtk.STOCK_OPEN, gtk.RESPONSE_OK))
             chooser.set_default_response(gtk.RESPONSE_OK)
 
             response = chooser.run()

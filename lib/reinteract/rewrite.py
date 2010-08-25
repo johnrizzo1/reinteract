@@ -364,7 +364,7 @@ def _rewrite_expr_stmt(t, state):
 def _rewrite_print_stmt(t, state):
     # print_stmt: 'print' ( [ test (',' test)* [','] ] |
     #                       '>>' test [ (',' test)+ [','] ] )
-    if state.print_func_name !=None and t[2][0] == symbol.test:
+    if state.print_func_name != None and t[2][0] == symbol.test:
         return _create_funccall_expr_stmt(state.print_func_name, filter(lambda x: type(x) != int and x[0] == symbol.test, t))
     else:
         return t
@@ -477,7 +477,7 @@ def _rewrite_file_input(t, state):
         # Ideally, we'd be able to pass in flags to the AST.compile() operation as we can with the
         # builtin compile() function. Lacking that ability, we just munge an import statement into
         # the start of the syntax tree
-        return ((symbol.file_input, _create_future_import_statement(state.future_features)) +
+        return ((symbol.file_input, _create_future_import_statement(state.future_features)) + 
                 tuple((_rewrite_stmt(x, state) if x[0] == symbol.stmt else x) for x in t[1:]))
         
     else:
@@ -505,7 +505,7 @@ def _process_dotted_as_name(t):
         assert t[2] == (token.NAME, 'as')
         as_name = t[3][1]
 
-    return (name, [( '.', as_name )])
+    return (name, [('.', as_name)])
 
 # dotted_as_names: dotted_as_name (',' dotted_as_name)*
 def _process_dotted_as_names(t):
@@ -734,7 +734,7 @@ def _compile_mutations(paths, copy_func_name):
 
     # Sort the paths with shorter paths earlier so that we copy prefixes
     # before longer versions
-    paths_to_copy = sorted(paths_to_copy, lambda x,y: cmp(len(x),len(y)))
+    paths_to_copy = sorted(paths_to_copy, lambda x, y: cmp(len(x), len(y)))
 
     return [(_get_path_root(path),
              _describe_path(path),
@@ -871,7 +871,7 @@ if __name__ == '__main__':
 
     test_funccall(())
     test_funccall((1,))
-    test_funccall((1,2))
+    test_funccall((1, 2))
 
     #
     # Test that our intercepting of bare expressions to save the output works
@@ -890,7 +890,7 @@ if __name__ == '__main__':
 
     test_output('a=3', ())
     test_output('1', (1,))
-    test_output('1,2', (1,2))
+    test_output('1,2', (1, 2))
     test_output('1;2', (2,))
     test_output('a=3; a', (3,))
     test_output('def x():\n    1\ny = x()', (1,))
@@ -919,7 +919,7 @@ if __name__ == '__main__':
 
     test_print('a=3', ())
     test_print('print 1', (1,))
-    test_print('print 1,2', (1,2))
+    test_print('print 1,2', (1, 2))
     test_print('print "",', ("",))
     test_print('for i in [0]: print i', (0,))
     test_print('import sys; print >>sys.stderr, "",', ())
@@ -1003,9 +1003,9 @@ a.a = A()
                  prepare, 'a.b == 1', 'a.b == 2')
     test_mutated('a.b = 2', ('a',),
                  prepare, 'a.b == 1', 'a.b == 2')
-    test_mutated('a.a.b = 2', ('a','a.a'),
+    test_mutated('a.a.b = 2', ('a', 'a.a'),
                  prepare, 'a.a.b == 1', 'a.a.b == 2')
-    test_mutated('a.a.b += 1', ('a','a.a','a.a.b'),
+    test_mutated('a.a.b += 1', ('a', 'a.a', 'a.a.b'),
                  prepare, 'a.a.b == 1', 'a.a.b == 2')
 
     test_mutated('a.addmul(1,2)', ('a',),

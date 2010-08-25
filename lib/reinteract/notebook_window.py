@@ -26,7 +26,7 @@ gtk.rc_parse_string(
      """)
 
 class NotebookWindow(BaseNotebookWindow):
-    UI_STRING="""
+    UI_STRING = """
 <ui>
    <menubar name="TopMenu">
       <menu action="file">
@@ -117,7 +117,7 @@ class NotebookWindow(BaseNotebookWindow):
         tab_button.set_name('notebook-close-button')
         tab_button.set_relief(gtk.RELIEF_NONE)
         tab_button.props.can_focus = False
-        tab_button.connect('clicked', lambda *args: self.on_tab_close_button_clicked(editor))
+        tab_button.connect('clicked', lambda * args: self.on_tab_close_button_clicked(editor))
         label_widget.pack_start(tab_button, False, False, 0)
         close = gtk.image_new_from_stock('gtk-close', gtk.ICON_SIZE_MENU)
         tab_button.add(close)

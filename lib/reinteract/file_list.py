@@ -14,7 +14,7 @@ import pango
 
 from notebook import Notebook, NotebookFile, WorksheetFile, MiscFile, LibraryFile
 
-_HEADER_COLOR = gtk.gdk.Color(0xffff,0xdddd,0xbbbb)
+_HEADER_COLOR = gtk.gdk.Color(0xffff, 0xdddd, 0xbbbb)
 
 _debug = logging.getLogger("FileList").debug
 
@@ -44,7 +44,7 @@ def _collate(a, b):
 
 def _compare_paths(a, b):
     # Compare two relative paths lexicographically by component
-    for f_a,f_b in zip(_split_path(a), _split_path(b)):
+    for f_a, f_b in zip(_split_path(a), _split_path(b)):
         c = _collate(f_a, f_b)
         if c != 0:
             return c
@@ -266,7 +266,7 @@ class FileList(gtk.TreeView):
         item = model.get_value(iter, 0)
 
         if isinstance(item, _HeaderItem):
-            cell.props.background_gdk = gtk.gdk.Color(0xffff,0xdddd,0xbbbb)
+            cell.props.background_gdk = gtk.gdk.Color(0xffff, 0xdddd, 0xbbbb)
         else:
             cell.props.background_gdk = None
 
@@ -309,11 +309,11 @@ class FileList(gtk.TreeView):
     def __connect_item(self, item):
         if isinstance(item, _FileItem):
             item.notify_active_handler = item.file.connect('notify::active',
-                                                           lambda *args: self.__refresh_item(item))
+                                                           lambda * args: self.__refresh_item(item))
             item.notify_modified_handler = item.file.connect('notify::modified',
-                                                             lambda *args: self.__refresh_item(item))
+                                                             lambda * args: self.__refresh_item(item))
             item.notify_state_handler = item.file.connect('notify::state',
-                                                          lambda *args: self.__refresh_item(item))
+                                                          lambda * args: self.__refresh_item(item))
             item.worksheet = None
             item.notify_code_modified_handler = 0
 
@@ -376,11 +376,11 @@ class FileList(gtk.TreeView):
                 width, height = menu.size_request()
                 if x < monitor_rect.x:
                     x = monitor_rect.x
-                elif x + width >= monitor_rect.x +  monitor_rect.width:
-                    x = monitor_rect.x +  monitor_rect.width - width
+                elif x + width >= monitor_rect.x + monitor_rect.width:
+                    x = monitor_rect.x + monitor_rect.width - width
                 if y < monitor_rect.y:
                     y = monitor_rect.y
-                elif y + height >= monitor_rect.y +  monitor_rect.height:
+                elif y + height >= monitor_rect.y + monitor_rect.height:
                     # At the bottom we position above the reference point rather
                     # then just forcing onto the screen by the minimum amount
                     y = window_y + cell_rect.y + cell_rect.height / 2 - height
@@ -516,8 +516,8 @@ if __name__ == '__main__': #pragma: no cover
         if _compare_paths(a, b) != expected:
             raise AssertionError("For %r <=> %r got %s expected %s" % (a, b, _compare_paths(a, b), expected))
 
-        if _compare_paths(b, a) != - expected:
-            raise AssertionError("For %r <=> %r got %s expected %s" % (a, b, _compare_paths(b, a), - expected))
+        if _compare_paths(b, a) != -expected:
+            raise AssertionError("For %r <=> %r got %s expected %s" % (a, b, _compare_paths(b, a), -expected))
 
     expect_compare_paths("a", "a", 0)
     expect_compare_paths("a", "b", -1)

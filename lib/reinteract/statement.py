@@ -295,7 +295,7 @@ class Statement:
         if self.state != Statement.NEW and self.state != Statement.COMPILE_ERROR:
             self.state = Statement.COMPILE_SUCCESS
 
-if __name__=='__main__':
+if __name__ == '__main__':
     import stdout_capture
     from notebook import Notebook
     from worksheet import Worksheet
@@ -318,13 +318,13 @@ if __name__=='__main__':
 
     # A bare expression should give the repr of the expression
     expect_result("'a'", repr('a'))
-    expect_result("1,2", repr((1,2)))
+    expect_result("1,2", repr((1, 2)))
 
     # Print, on the other hand, gives the string form of the expression, with
     # one result object per output line
     expect_result("print 'a'", 'a')
     expect_result("print 'a', 'b'", ['a b'])
-    expect_result("print 'a\\nb'", ['a','b'])
+    expect_result("print 'a\\nb'", ['a', 'b'])
 
     # Test that we copy a variable before mutating it (when we can detect
     # the mutation)

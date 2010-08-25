@@ -195,7 +195,7 @@ def __format(obj, nl, object_stack):
         return __format_sequence(obj, '(', ')', nl, object_stack)
     else:
         s = repr(obj)
-        return s.replace("\n", nl),  1 + s.count("\n")
+        return s.replace("\n", nl), 1 + s.count("\n")
 
 def format(obj):
     """Format obj as text
@@ -265,8 +265,8 @@ if __name__ == "__main__":
     def do_test(obj, expected):
         # Trim off initial and trailing blank lines, and use the amount of white
         # space on the first remaining line as an overall indent to remove
-        expected = re.sub("^\s*\n","", expected)
-        expected = re.sub("\n\s*$","", expected)
+        expected = re.sub("^\s*\n", "", expected)
+        expected = re.sub("\n\s*$", "", expected)
         initial_white = len(re.match(r"^\s*", expected).group(0))
         expected = "\n".join([s[initial_white:] for s in expected.split("\n")])
         

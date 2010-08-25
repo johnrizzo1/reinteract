@@ -18,7 +18,7 @@ from global_settings import global_settings
 from notebook import Notebook
 
 class EditorWindow(BaseWindow):
-    UI_STRING="""
+    UI_STRING = """
 <ui>
    <menubar name="TopMenu">
       <menu action="file">
@@ -70,7 +70,7 @@ class EditorWindow(BaseWindow):
         BaseWindow._add_actions(self, action_group)
 
         action_group.add_actions([
-            ('save-as', gtk.STOCK_SAVE_AS,   None,         None,              None, self.on_save_as),
+            ('save-as', gtk.STOCK_SAVE_AS, None, None, None, self.on_save_as),
         ])
 
     def _close_current(self):
@@ -89,7 +89,7 @@ class EditorWindow(BaseWindow):
     def __save_as(self):
         chooser = gtk.FileChooserDialog("Save As...", self.window, gtk.FILE_CHOOSER_ACTION_SAVE,
                                         (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                                         gtk.STOCK_SAVE,   gtk.RESPONSE_OK))
+                                         gtk.STOCK_SAVE, gtk.RESPONSE_OK))
         chooser.set_default_response(gtk.RESPONSE_OK)
         response = chooser.run()
         filename = None
@@ -139,9 +139,9 @@ class EditorWindow(BaseWindow):
 
         self.current_editor = editor
 
-        self.current_editor.connect('notify::modified', lambda *args: self.update_sensitivity())
+        self.current_editor.connect('notify::modified', lambda * args: self.update_sensitivity())
         self.current_editor.connect('notify::title', self.__update_title)
-        self.current_editor.connect('notify::state', lambda *args: self.update_sensitivity())
+        self.current_editor.connect('notify::state', lambda * args: self.update_sensitivity())
         self.main_vbox.pack_start(self.current_editor.widget, expand=True, fill=True)
 
         self.path = filename

@@ -6,15 +6,14 @@
 #
 ########################################################################
 
+from config_file import ConfigFile
+from notebook_info import format_duration
 import gobject
 import os
 import re
 import time
 
 _brackets_re = re.compile(r'([\]\[])')
-
-from notebook_info import format_duration
-from config_file import ConfigFile
 
 def _hex_escape(s, unsafe_re):
     return unsafe_re.sub(lambda x: '%%%02x' % ord(x.group(1)), s)
